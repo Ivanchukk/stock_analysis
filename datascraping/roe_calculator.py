@@ -18,6 +18,7 @@ def get_roe(stock):
     income_statement = income_statement.json()
     BS = requests.get(f"https://financialmodelingprep.com/api/v3/financials/balance-sheet-statement/{stock}?period=quarter")
     BS = BS.json()
+    print(BS)
     # Transfer Data into DataFrame
     df_BS = pd.DataFrame.from_dict(BS["financials"])
     df_income_statement = pd.DataFrame.from_dict(income_statement["financials"])
@@ -68,7 +69,7 @@ def a():
 
     #  Will send X number of stocks to ROE function calculator
     for symbol in list_sp500_symbols1:
-        getROE(symbol)
+        get_roe(symbol)
 
     # Create two list to insert into dictionary
 
