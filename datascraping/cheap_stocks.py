@@ -9,7 +9,7 @@ import plotly.express as px
 stock_db = StockDataBase('stocks')
 
 # Make run table bigger
-desired_width=1200
+desired_width = 1200
 pd.set_option('display.width', desired_width)
 np.set_printoptions(linewidth=desired_width)
 pd.set_option('display.max_columns', 30)
@@ -38,24 +38,27 @@ company_quotes = company_quotes.json()
 # Converting to DataFrame
 company_quotes_df = pd.DataFrame.from_dict(company_quotes)
 
-
 # Create row with current date
 today_date = date.today()
 company_quotes_df['date'] = today_date
 company_quotes_df = company_quotes_df[['date', 'symbol', 'price', 'changesPercentage', 'change', 'volume', 'avgVolume']]
 
 
-def a(company_quotes_df):
+def add_new_data_to_sql(company_quotes_df):
     print(company_quotes_df)
     stock_db.add_data(company_quotes_df)
 
-#a(company_quotes_df)
-dates = ['2020-05-16', '2020-05-17', '2020-05-18']
-def b(dates):
-    b = stock_db.retrieve_date(dates)
-    c = pd.DataFrame(b)
-    print(c)
 
-b(dates)
+# a(company_quotes_df)
+dates = ['2020-05-16', '2020-05-17', '2020-05-19']
 
 
+def get_data_from_sql(dates):
+    for date in dates:
+        b = stock_db.retrieve_date(date)
+        c = pd.DataFrame(b)
+        print(c)
+
+
+# add_new_data_to_sql(company_quotes_df)
+get_data_from_sql(dates)

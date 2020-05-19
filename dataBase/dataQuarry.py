@@ -15,7 +15,7 @@ class StockDataBase:
         return g
 
     def retrieve_date(self, a):
-        self.cur.execute("SELECT date, symbol, price, changesPercentage, change, volume, avgVolume  FROM stocks WHERE date=?", (a,))
+        self.cur.execute("SELECT date, symbol, price, changesPercentage, change, volume, avgVolume  FROM stocks WHERE date in ", (a,))
         g = self.cur.fetchall()
 
         return g
