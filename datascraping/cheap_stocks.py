@@ -79,8 +79,8 @@ class Stocks:
         stock_db.add_data(a)
 
 
-# aa = Stocks()
-# aa.add_new_data_to_sql()
+#aa = Stocks()
+#aa.add_new_data_to_sql()
 
 
 dates = ['2020-05-16', '2020-05-20', '2020-05-19']
@@ -93,8 +93,35 @@ def get_data_from_sql(dates):
     # c = c.iloc[:,1:]
     # uniq = c['date'].unique()
     # print(uniq)
-    print(c)
+    return c
 
 
 # add_new_data_to_sql(aa.cheap_stock_df().company_quotes_df)
-get_data_from_sql(dates)
+#get_data_from_sql(dates)
+
+class Anls:
+    def __init__(self,stk_info):
+        self.stk_info = stk_info
+
+    def vol_change(self):
+        a = self.stk_info['symbol'].unique()
+            #p = self.stk_info.filter[i]
+            #print(p)
+        for i in a:
+            aa = self.stk_info.loc[self.stk_info['symbol'] == i]
+            def bbb(x):
+                xx = x['volume']
+                if np.all(np.diff(x['volume']) > 0) and np.all(np.diff(x['price']) > 0) and np.all(x['pe'] > 1):
+
+                    print(x)
+            bbb(aa)
+
+            #if aa.iloc[3] > aa.iloc[2] > aa.iloc[1]:
+            #    print(aa)
+        #print(self.stk_info.loc[self.stk_info['symbol'] == 'HNRG'])
+        #print(a)
+
+
+bb = Anls(get_data_from_sql(dates))
+bb.vol_change()
+
